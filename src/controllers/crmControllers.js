@@ -15,3 +15,13 @@ export const addNewContact = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+export const getContacts = async (req, res) => {
+    try {
+        let contacts = await Contact.find({});
+        res.json(contacts);
+    }
+    catch (err) {
+        res.status(500).send(err); 
+    }
+}
