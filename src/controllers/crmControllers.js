@@ -13,7 +13,7 @@ export const addNewContact = async (req, res) => {
     }
     catch (err) {
         res.status(500).send(err);
-    }
+    };
 };
 
 export const getContacts = async (req, res) => {
@@ -23,5 +23,15 @@ export const getContacts = async (req, res) => {
     }
     catch (err) {
         res.status(500).send(err); 
+    };
+};
+
+export const getContactWithID = async (req, res) => {
+    try {
+        let contact = await Contact.findById(req.params.contactId);
+        res.json(contact);
     }
-}
+    catch (err) {
+        res.status(500).send(err); 
+    };
+};
