@@ -1,8 +1,27 @@
 import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
 import routes from './src/routes/crmRoutes';
+import dotenv from 'dotenv';
+const { resolveSoa } = require('dns');
+require('dotenv').config();
+const uri = process.env.MONGODB_URI;
 
 const app = express();
 const PORT = 3000;
+
+dotenv.config();
+
+// mongoose connection
+mongoose.Promise = global.Promise;
+mongoose.connect(uri, {
+    authSource: "admin",
+    ssl: true,
+});
+
+// bodyparser setup
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 routes(app);
 
