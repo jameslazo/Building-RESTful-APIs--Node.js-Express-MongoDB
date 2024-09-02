@@ -23,6 +23,9 @@ mongoose.connect(uri, {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// serve static files
+app.use(express.static('public'));
+
 routes(app);
 
 app.get('/', (req, res) => 
